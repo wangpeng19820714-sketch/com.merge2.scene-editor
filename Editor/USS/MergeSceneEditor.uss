@@ -81,6 +81,26 @@
     -unity-text-align: middle-left;
 }
 
+.dialogue-field-row {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+
+.dialogue-field-label {
+    width: 104px;
+    min-width: 104px;
+    margin-top: 3px;
+    white-space: nowrap;
+    -unity-text-align: middle-left;
+}
+
+.dialogue-field-input {
+    flex-grow: 1;
+    min-width: 0;
+}
+
 .dialogue-text-field {
     min-height: 64px;
 }

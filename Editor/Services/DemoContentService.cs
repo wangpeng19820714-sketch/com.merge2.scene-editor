@@ -13,14 +13,14 @@ namespace Merge2.SceneEditor.Editor
     public static class DemoContentService
     {
         private const string SceneId = "SC_RestaurantInterior";
-        private const string SceneName = "餐车内部";
+        private const string SceneName = "Food Truck Interior";
 
         [MenuItem("Tools/Merge-2/Create Restaurant Demo")]
         public static void CreateRestaurantDemoFromMenu()
         {
             var sceneFolder = $"{MergeSceneAssetService.ContentRoot}/{SceneId}";
             if (AssetDatabase.IsValidFolder(sceneFolder)
-                && !EditorUtility.DisplayDialog("生成 Demo", "SC_RestaurantInterior 已存在。是否覆盖这份 Demo 内容？", "覆盖", "取消"))
+                && !EditorUtility.DisplayDialog("Generate Demo", "SC_RestaurantInterior already exists. Replace this demo content?", "Replace", "Cancel"))
             {
                 return;
             }
@@ -49,7 +49,7 @@ namespace Merge2.SceneEditor.Editor
             var dialogueBackground = CreateSprite($"{sceneFolder}/Art/DialogueBubbleBackground.png", new Color32(24, 30, 38, 238));
             var sceneConfig = MergeSceneAssetService.CreateSceneConfig(SceneId, SceneName);
             var sceneConfigPath = AssetDatabase.GetAssetPath(sceneConfig);
-            sceneConfig.Description = "Merge-2 餐车内部修复剧情 Demo：炉灶、水槽、招牌三个阶段。";
+            sceneConfig.Description = "Merge-2 food truck repair story demo: stove, sink, and signboard stages.";
             var dialogueItemPrefab = CreateDialogueUiPrefabs(sceneFolder, square, avatarFrame, dialogueBackground, sceneConfig);
 
             var stoveBefore = CreateRepairPrefab(sceneFolder, square, "PF_Stove_Before", "STOVE OLD", new Color32(96, 63, 45, 255), new Color32(170, 62, 50, 255), true);
@@ -60,27 +60,27 @@ namespace Merge2.SceneEditor.Editor
             var signAfter = CreateRepairPrefab(sceneFolder, square, "PF_Signboard_After", "SIGN NEW", new Color32(80, 70, 112, 255), new Color32(239, 114, 77, 255), false);
 
             var stage01 = MergeSceneAssetService.CreateStage(sceneConfig);
-            ConfigureStage(stage01, "Stage_01_RepairStove", "阶段 01：修复炉灶", "炉灶损坏，先引导玩家完成第一次修复。", stoveBefore, stoveAfter, StageValidationState.Approved);
+            ConfigureStage(stage01, "Stage_01_RepairStove", "Stage 01: Repair Stove", "The stove is broken. Guide the player through the first repair.", stoveBefore, stoveAfter, StageValidationState.Approved);
             AddDialogue(stage01.DialogueSequence,
-                ("Amy", "艾米", "哎呀！这个炉灶看起来已经坏了很久了。"),
-                ("Tom", "汤姆", "别担心，我们先把炉灶修好，餐车就能重新开火。"),
-                ("Amy", "艾米", "太棒了，修好后我们就能做更多美味的食物啦！"));
+                ("Amy", "Amy", "Oh no! This stove looks like it has been broken for a long time."),
+                ("Tom", "Tom", "Do not worry. Once we repair the stove, the truck can cook again."),
+                ("Amy", "Amy", "Great! After this, we can make more delicious food."));
             ApplyDialogueStyle(stage01.DialogueSequence, dialogueItemPrefab, avatarFrame, dialogueBackground);
 
             var stage02 = MergeSceneAssetService.CreateStage(sceneConfig);
-            ConfigureStage(stage02, "Stage_02_RepairSink", "阶段 02：修复水槽", "水槽漏水，需要切换修复前后状态并验收。", sinkBefore, sinkAfter, StageValidationState.Pending);
+            ConfigureStage(stage02, "Stage_02_RepairSink", "Stage 02: Repair Sink", "The sink is leaking. Switch between before and after states for review.", sinkBefore, sinkAfter, StageValidationState.Pending);
             AddDialogue(stage02.DialogueSequence,
-                ("Amy", "艾米", "水槽还在滴水，地面都快湿透了。"),
-                ("Tom", "汤姆", "我来换掉旧管道，你准备好清洁工具。"),
-                ("Amy", "艾米", "水流顺畅了，厨房终于像样了！"));
+                ("Amy", "Amy", "The sink is still dripping, and the floor is almost soaked."),
+                ("Tom", "Tom", "I will replace the old pipe. Please get the cleaning tools ready."),
+                ("Amy", "Amy", "The water flows smoothly now. The kitchen finally looks right."));
             ApplyDialogueStyle(stage02.DialogueSequence, dialogueItemPrefab, avatarFrame, dialogueBackground);
 
             var stage03 = MergeSceneAssetService.DuplicateStage(sceneConfig, stage01);
-            ConfigureStage(stage03, "Stage_03_RepairSignboard", "阶段 03：修复招牌", "由复制阶段生成，再替换资源和对白，演示复制阶段工作流。", signBefore, signAfter, StageValidationState.Locked);
+            ConfigureStage(stage03, "Stage_03_RepairSignboard", "Stage 03: Repair Signboard", "Created from a duplicated stage, then updated with new assets and dialogue.", signBefore, signAfter, StageValidationState.Locked);
             AddDialogue(stage03.DialogueSequence,
-                ("Amy", "艾米", "最后是招牌。没有它，客人根本找不到我们。"),
-                ("Tom", "汤姆", "我会把灯接好，再刷上一层醒目的颜色。"),
-                ("Amy", "艾米", "招牌亮起来了，餐车正式重新营业！"));
+                ("Amy", "Amy", "Last comes the signboard. Without it, customers cannot find us."),
+                ("Tom", "Tom", "I will reconnect the lights and paint it with a brighter color."),
+                ("Amy", "Amy", "The sign is glowing. The food truck is officially open again."));
             ApplyDialogueStyle(stage03.DialogueSequence, dialogueItemPrefab, avatarFrame, dialogueBackground);
 
             CreateValidationImage(sceneConfig, stage01, new Color32(82, 118, 92, 255));
@@ -121,10 +121,10 @@ namespace Merge2.SceneEditor.Editor
             stage.Locked = state == StageValidationState.Locked;
             stage.AcceptanceDescription = state switch
             {
-                StageValidationState.Approved => "Demo 验收：修复前后状态、Timeline、对白均已配置。",
-                StageValidationState.Pending => "Demo 验收：待检查水槽动画和对白节奏。",
-                StageValidationState.Locked => "Demo 验收：复制阶段后已锁定，用于演示锁定保护。",
-                _ => "Demo 验收。"
+                StageValidationState.Approved => "Demo acceptance: before/after states, Timeline, and dialogue are configured.",
+                StageValidationState.Pending => "Demo acceptance: review sink animation and dialogue pacing.",
+                StageValidationState.Locked => "Demo acceptance: locked after duplication to demonstrate edit protection.",
+                _ => "Demo acceptance."
             };
             stage.LastModifiedBy = Environment.UserName;
             stage.LastModifiedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -176,6 +176,7 @@ namespace Merge2.SceneEditor.Editor
                 line.dialogueItemPrefab = itemPrefab;
                 line.avatarFrame = avatarFrame;
                 line.dialogueBackground = dialogueBackground;
+                line.talkItemContentImage = null;
             }
 
             EditorUtility.SetDirty(dialogue);
@@ -290,7 +291,7 @@ namespace Merge2.SceneEditor.Editor
             headLayout.preferredWidth = 200f;
             headLayout.preferredHeight = 200f;
 
-            CreateLegacyText("Text", head.transform, "角色", 32, Color.black, new Vector2(200f, 52f), new Vector2(0f, -74f));
+            CreateLegacyText("Text", head.transform, "Name", 32, Color.black, new Vector2(200f, 52f), new Vector2(0f, -74f));
 
             var bubble = new GameObject("Content", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter), typeof(LayoutElement));
             bubble.transform.SetParent(item.transform, false);

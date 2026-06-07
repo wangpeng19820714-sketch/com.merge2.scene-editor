@@ -47,7 +47,7 @@ namespace Merge2.SceneEditor.Editor
 
             var stage = ScriptableObject.CreateInstance<MergeStageConfig>();
             stage.StageId = stageId;
-            stage.StageName = $"阶段 {stageNumber:00}";
+            stage.StageName = $"Stage {stageNumber:00}";
             stage.DialogueSequence = dialogue;
             stage.LastModifiedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             stage.LastModifiedBy = Environment.UserName;

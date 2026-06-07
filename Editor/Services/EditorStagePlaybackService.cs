@@ -352,7 +352,7 @@ namespace Merge2.SceneEditor.Editor
             AddOverlayBlock(dialogueOverlay.transform, "Name Plate", new Color32(238, 184, 76, 255), new Vector3(-1.05f, 0.36f, -0.01f), new Vector3(0.78f, 0.2f, 1f));
             speakerText = AddOverlayText(dialogueOverlay.transform, "Speaker", string.Empty, new Vector3(-1.05f, 0.36f, -0.03f), 0.046f, Color.black);
             lineText = AddOverlayText(dialogueOverlay.transform, "Line", string.Empty, new Vector3(0f, -0.06f, -0.03f), 0.044f, Color.white);
-            AddOverlayText(dialogueOverlay.transform, "Next Hint", "点击任意位置继续", new Vector3(0.98f, -0.34f, -0.03f), 0.026f, new Color32(190, 198, 205, 255));
+            AddOverlayText(dialogueOverlay.transform, "Next Hint", "Tap anywhere", new Vector3(0.98f, -0.34f, -0.03f), 0.026f, new Color32(190, 198, 205, 255));
             ShowDialogueLine(0);
             ignoreDialogueClicksUntil = EditorApplication.timeSinceStartup + 0.2d;
             mouseWasPressed = Mouse.current != null && Mouse.current.leftButton.isPressed;
@@ -389,7 +389,7 @@ namespace Merge2.SceneEditor.Editor
             var listContent = FindDialogueListContent(dialogueUiInstance.transform);
             if (listContent == null)
             {
-                Debug.LogWarning("[Merge-2 Dialogue Preview] 对话界面没有找到 StoryTalkSV/Viewport/Content，无法生成对话列表。");
+                Debug.LogWarning("[Merge-2 Dialogue Preview] Dialogue UI is missing StoryTalkSV/Viewport/Content, so the dialogue list cannot be generated.");
                 return true;
             }
 
@@ -397,7 +397,7 @@ namespace Merge2.SceneEditor.Editor
             var templatePrefab = activeSceneConfig.DefaultDialogueItemPrefab;
             if (templatePrefab == null && embeddedTemplate == null)
             {
-                Debug.LogWarning("[Merge-2 Dialogue Preview] 没有默认 Item Prefab，也没有在列表 Content 下找到 SelfTalk 模板。");
+                Debug.LogWarning("[Merge-2 Dialogue Preview] No default item prefab is set, and no SelfTalk template was found under the list Content.");
                 return true;
             }
 
@@ -618,6 +618,9 @@ namespace Merge2.SceneEditor.Editor
             ApplyImageByName(item, line.portrait, "portrait", "icon", "avatar");
             ApplyImageByName(item, line.avatarFrame != null ? line.avatarFrame : activeSceneConfig.DefaultAvatarFrame, "avatarframe", "frame", "head");
             ApplyImageByName(item, line.dialogueBackground != null ? line.dialogueBackground : activeSceneConfig.DefaultDialogueBackground, "dialoguebackground", "background", "bubble", "content");
+            ApplyTalkItemContentImage(item, line.dialogueBackground != null
+                ? line.dialogueBackground
+                : activeSceneConfig.DefaultDialogueBackground);
 
             var itemRect = item.GetComponent<RectTransform>();
             if (itemRect != null)
@@ -637,7 +640,7 @@ namespace Merge2.SceneEditor.Editor
 
                 var path = GetLowerPath(component.transform, item.transform);
                 var value = path.Contains("head") || path.Contains("speaker") || path.Contains("name")
-                    ? string.IsNullOrWhiteSpace(line.speakerName) ? "角色" : line.speakerName
+                    ? string.IsNullOrWhiteSpace(line.speakerName) ? "Character" : line.speakerName
                     : line.text;
                 SetTextProperty(component, value);
             }
@@ -646,7 +649,7 @@ namespace Merge2.SceneEditor.Editor
             {
                 var path = GetLowerPath(text.transform, item.transform);
                 text.text = path.Contains("head") || path.Contains("speaker") || path.Contains("name")
-                    ? string.IsNullOrWhiteSpace(line.speakerName) ? "角色" : line.speakerName
+                    ? string.IsNullOrWhiteSpace(line.speakerName) ? "Character" : line.speakerName
                     : line.text;
             }
         }
@@ -696,6 +699,61 @@ namespace Merge2.SceneEditor.Editor
                     }
                 }
             }
+        }
+
+        private static void ApplyTalkItemContentImage(GameObject item, Sprite sprite)
+        {
+            if (sprite == null)
+            {
+                return;
+            }
+
+            UnityEngine.UI.Image fallback = null;
+            foreach (var image in item.GetComponentsInChildren<UnityEngine.UI.Image>(true))
+            {
+                if (image.transform.name != "Content")
+                {
+                    continue;
+                }
+
+                fallback ??= image;
+                if (!HasTextDescendant(image.transform))
+                {
+                    continue;
+                }
+
+                ApplyImageSprite(image, sprite);
+                return;
+            }
+
+            if (fallback != null)
+            {
+                ApplyImageSprite(fallback, sprite);
+            }
+        }
+
+        private static bool HasTextDescendant(Transform root)
+        {
+            foreach (var component in root.GetComponentsInChildren<Component>(true))
+            {
+                if (component == null)
+                {
+                    continue;
+                }
+
+                if (component is UnityEngine.UI.Text || IsTmpText(component))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static void ApplyImageSprite(UnityEngine.UI.Image image, Sprite sprite)
+        {
+            image.sprite = sprite;
+            image.type = UnityEngine.UI.Image.Type.Sliced;
         }
 
         private static string GetLowerPath(Transform transform, Transform root)
@@ -871,7 +929,7 @@ namespace Merge2.SceneEditor.Editor
             }
 
             var line = dialogueLines[index];
-            speakerText.text = string.IsNullOrWhiteSpace(line.speakerName) ? "角色" : line.speakerName;
+            speakerText.text = string.IsNullOrWhiteSpace(line.speakerName) ? "Character" : line.speakerName;
             lineText.text = WrapDialogueText(line.text, 14);
         }
 

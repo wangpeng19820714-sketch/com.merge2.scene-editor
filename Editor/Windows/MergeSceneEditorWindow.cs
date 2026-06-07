@@ -50,22 +50,22 @@ namespace Merge2.SceneEditor.Editor
         {
             var toolbar = new Toolbar();
 
-            toolbar.Add(new Button(CreateNewScene) { text = "新建场景" });
-            toolbar.Add(new Button(CreateStage) { text = "新建阶段" });
-            toolbar.Add(new Button(DuplicateSelectedStage) { text = "复制阶段" });
-            toolbar.Add(new Button(GenerateDemo) { text = "生成 Demo" });
-            toolbar.Add(new Button(DeleteSelectedStage) { text = "删除阶段" });
-            toolbar.Add(new Button(MoveStageUp) { text = "上移" });
-            toolbar.Add(new Button(MoveStageDown) { text = "下移" });
+            toolbar.Add(new Button(CreateNewScene) { text = "New Scene" });
+            toolbar.Add(new Button(CreateStage) { text = "New Stage" });
+            toolbar.Add(new Button(DuplicateSelectedStage) { text = "Duplicate Stage" });
+            toolbar.Add(new Button(GenerateDemo) { text = "Generate Demo" });
+            toolbar.Add(new Button(DeleteSelectedStage) { text = "Delete Stage" });
+            toolbar.Add(new Button(MoveStageUp) { text = "Move Up" });
+            toolbar.Add(new Button(MoveStageDown) { text = "Move Down" });
             toolbar.Add(new ToolbarSpacer());
-            toolbar.Add(new Button(RunValidation) { text = "检查" });
-            toolbar.Add(new Button(() => EditorStagePlaybackService.PlayStage(selectedScene, selectedStage)) { text = "运行当前阶段" });
-            toolbar.Add(new Button(EditorStagePlaybackService.Complete) { text = "完成当前阶段" });
-            toolbar.Add(new Button(EditorStagePlaybackService.Stop) { text = "停止运行" });
-            toolbar.Add(new Button(() => EditorPreviewService.PreviewStage(selectedStage, StagePreviewState.Before)) { text = "预览修复前" });
-            toolbar.Add(new Button(() => EditorPreviewService.PreviewStage(selectedStage, StagePreviewState.After)) { text = "预览修复后" });
-            toolbar.Add(new Button(ClearAllPreviewObjects) { text = "清理预览" });
-            toolbar.Add(new Button(SaveAssets) { text = "保存" });
+            toolbar.Add(new Button(RunValidation) { text = "Validate" });
+            toolbar.Add(new Button(() => EditorStagePlaybackService.PlayStage(selectedScene, selectedStage)) { text = "Play Stage" });
+            toolbar.Add(new Button(EditorStagePlaybackService.Complete) { text = "Complete Stage" });
+            toolbar.Add(new Button(EditorStagePlaybackService.Stop) { text = "Stop" });
+            toolbar.Add(new Button(() => EditorPreviewService.PreviewStage(selectedStage, StagePreviewState.Before)) { text = "Preview Before" });
+            toolbar.Add(new Button(() => EditorPreviewService.PreviewStage(selectedStage, StagePreviewState.After)) { text = "Preview After" });
+            toolbar.Add(new Button(ClearAllPreviewObjects) { text = "Clear Preview" });
+            toolbar.Add(new Button(SaveAssets) { text = "Save" });
 
             rootVisualElement.Add(toolbar);
         }
@@ -88,7 +88,7 @@ namespace Merge2.SceneEditor.Editor
             right.AddToClassList("right-panel");
             main.Add(right);
 
-            sceneObjectField = new ObjectField("当前场景配置")
+            sceneObjectField = new ObjectField("Scene Config")
             {
                 objectType = typeof(MergeSceneConfig),
                 allowSceneObjects = false
@@ -102,21 +102,21 @@ namespace Merge2.SceneEditor.Editor
             });
             left.Add(sceneObjectField);
 
-            left.Add(CreateTitle("场景列表"));
+            left.Add(CreateTitle("Scenes"));
             sceneList = new ScrollView();
             sceneList.style.flexGrow = 1;
             left.Add(sceneList);
 
-            center.Add(CreateTitle("阶段列表"));
+            center.Add(CreateTitle("Stages"));
             stageList = new ScrollView();
             stageList.style.flexGrow = 1;
             center.Add(stageList);
 
-            center.Add(CreateTitle("检查结果"));
+            center.Add(CreateTitle("Validation"));
             validationPanel = new VisualElement();
             center.Add(validationPanel);
 
-            right.Add(CreateTitle("属性"));
+            right.Add(CreateTitle("Inspector"));
             inspectorPanel = new ScrollView();
             inspectorPanel.style.flexGrow = 1;
             right.Add(inspectorPanel);
@@ -172,7 +172,7 @@ namespace Merge2.SceneEditor.Editor
 
             if (selectedScene == null)
             {
-                stageList?.Add(new Label("请选择或新建一个场景配置。"));
+                stageList?.Add(new Label("Select or create a scene config."));
                 return;
             }
 
@@ -209,7 +209,7 @@ namespace Merge2.SceneEditor.Editor
             {
                 if (selectedStage.Locked)
                 {
-                    inspectorPanel.Add(new HelpBox("当前阶段已锁定。请先标记为待修改再编辑关键配置。", HelpBoxMessageType.Info));
+                    inspectorPanel.Add(new HelpBox("This stage is locked. Mark it Pending before editing key settings.", HelpBoxMessageType.Info));
                 }
 
                 var stageInspector = new InspectorElement(new SerializedObject(selectedStage));
@@ -227,24 +227,24 @@ namespace Merge2.SceneEditor.Editor
                 return;
             }
 
-            inspectorPanel?.Add(new Label("没有选中的配置。"));
+            inspectorPanel?.Add(new Label("No config selected."));
         }
 
         private void AddDialogueEditor(VisualElement parent, MergeStageConfig stage)
         {
             AddDialogueUiSettings(parent);
-            parent.Add(CreateTitle("对话编辑"));
+            parent.Add(CreateTitle("Dialogue"));
 
             if (stage.DialogueSequence == null)
             {
-                parent.Add(new HelpBox("当前阶段没有绑定 DialogueSequenceConfig。", HelpBoxMessageType.Warning));
+                parent.Add(new HelpBox("This stage has no DialogueSequenceConfig assigned.", HelpBoxMessageType.Warning));
                 var createButton = new Button(() =>
                 {
                     CreateDialogueSequence(stage);
                     RefreshInspector();
                 })
                 {
-                    text = "创建对话配置"
+                    text = "Create Dialogue Config"
                 };
                 createButton.SetEnabled(!stage.Locked);
                 parent.Add(createButton);
@@ -266,21 +266,21 @@ namespace Merge2.SceneEditor.Editor
             dialogueRoot.Add(dialogueId);
 
             var header = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            header.Add(new Button(() => AddDialogueLine(dialogue)) { text = "添加对白" });
-            header.Add(new Button(() => EditorStagePlaybackService.PreviewDialogueList(selectedScene, stage)) { text = "预览对话界面" });
+            header.Add(new Button(() => AddDialogueLine(dialogue)) { text = "Add Line" });
+            header.Add(new Button(() => EditorStagePlaybackService.PreviewDialogueList(selectedScene, stage)) { text = "Preview Dialogue UI" });
             header.Add(new Button(() =>
             {
                 Selection.activeObject = dialogue;
                 EditorGUIUtility.PingObject(dialogue);
             })
             {
-                text = "定位对话资产"
+                text = "Ping Dialogue Asset"
             });
             dialogueRoot.Add(header);
 
             if (dialogue.Lines.Count == 0)
             {
-                dialogueRoot.Add(new HelpBox("还没有对白行。点击“添加对白”开始编辑。", HelpBoxMessageType.Info));
+                dialogueRoot.Add(new HelpBox("No dialogue lines yet. Click Add Line to start.", HelpBoxMessageType.Info));
             }
 
             for (var i = 0; i < dialogue.Lines.Count; i++)
@@ -307,99 +307,118 @@ namespace Merge2.SceneEditor.Editor
             var title = new Label($"{index + 1:00}");
             title.AddToClassList("dialogue-line-index");
             titleRow.Add(title);
-            titleRow.Add(new Button(() => MoveDialogueLine(dialogue, index, -1)) { text = "上移" });
-            titleRow.Add(new Button(() => MoveDialogueLine(dialogue, index, 1)) { text = "下移" });
-            titleRow.Add(new Button(() => DuplicateDialogueLine(dialogue, index)) { text = "复制" });
-            titleRow.Add(new Button(() => RemoveDialogueLine(dialogue, index)) { text = "删除" });
+            titleRow.Add(new Button(() => MoveDialogueLine(dialogue, index, -1)) { text = "Up" });
+            titleRow.Add(new Button(() => MoveDialogueLine(dialogue, index, 1)) { text = "Down" });
+            titleRow.Add(new Button(() => DuplicateDialogueLine(dialogue, index)) { text = "Copy" });
+            titleRow.Add(new Button(() => RemoveDialogueLine(dialogue, index)) { text = "Delete" });
             lineRoot.Add(titleRow);
 
-            var speakerRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            var speakerId = new TextField("角色 ID") { value = line.speakerId };
+            var speakerId = new TextField { value = line.speakerId };
             speakerId.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.speakerId = evt.newValue));
-            var speakerName = new TextField("角色名") { value = line.speakerName };
-            speakerName.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.speakerName = evt.newValue));
-            var emotion = new TextField("表情") { value = line.emotion };
-            emotion.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.emotion = evt.newValue));
-            speakerRow.Add(speakerId);
-            speakerRow.Add(speakerName);
-            speakerRow.Add(emotion);
-            lineRoot.Add(speakerRow);
+            AddDialogueField(lineRoot, "Speaker ID", speakerId);
 
-            var portrait = new ObjectField("头像")
+            var speakerName = new TextField { value = line.speakerName };
+            speakerName.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.speakerName = evt.newValue));
+            AddDialogueField(lineRoot, "Speaker", speakerName);
+
+            var emotion = new TextField { value = line.emotion };
+            emotion.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.emotion = evt.newValue));
+            AddDialogueField(lineRoot, "Emotion", emotion);
+
+            var portrait = new ObjectField
             {
                 objectType = typeof(Sprite),
                 allowSceneObjects = false,
                 value = line.portrait
             };
             portrait.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.portrait = evt.newValue as Sprite));
-            lineRoot.Add(portrait);
+            AddDialogueField(lineRoot, "Portrait", portrait);
 
-            var itemPrefab = new ObjectField("Item 模板")
+            var itemPrefab = new ObjectField
             {
                 objectType = typeof(GameObject),
                 allowSceneObjects = false,
                 value = line.dialogueItemPrefab
             };
             itemPrefab.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.dialogueItemPrefab = evt.newValue as GameObject));
-            lineRoot.Add(itemPrefab);
+            AddDialogueField(lineRoot, "Item Prefab", itemPrefab);
 
-            var styleRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            var avatarFrame = new ObjectField("头像框")
+            var avatarFrame = new ObjectField
             {
                 objectType = typeof(Sprite),
                 allowSceneObjects = false,
                 value = line.avatarFrame
             };
             avatarFrame.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.avatarFrame = evt.newValue as Sprite));
-            var dialogueBackground = new ObjectField("对话背景框")
+            AddDialogueField(lineRoot, "Avatar Frame", avatarFrame);
+
+            var dialogueBackground = new ObjectField
             {
                 objectType = typeof(Sprite),
                 allowSceneObjects = false,
                 value = line.dialogueBackground
             };
-            dialogueBackground.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.dialogueBackground = evt.newValue as Sprite));
-            styleRow.Add(avatarFrame);
-            styleRow.Add(dialogueBackground);
-            lineRoot.Add(styleRow);
+            dialogueBackground.tooltip = "Sets this line's TalkItem/Content background. Empty uses the scene default background.";
+            dialogueBackground.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target =>
+            {
+                target.dialogueBackground = evt.newValue as Sprite;
+                target.talkItemContentImage = null;
+            }));
+            AddDialogueField(lineRoot, "Bubble BG", dialogueBackground);
 
-            var text = new TextField("对白") { value = line.text, multiline = true };
+            var text = new TextField { value = line.text, multiline = true };
             text.AddToClassList("dialogue-text-field");
             text.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.text = evt.newValue));
-            lineRoot.Add(text);
+            AddDialogueField(lineRoot, "Line Text", text);
 
-            var audioRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            var voiceKey = new TextField("语音 Key") { value = line.voiceKey };
+            var voiceKey = new TextField { value = line.voiceKey };
             voiceKey.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.voiceKey = evt.newValue));
-            var typewriterSpeed = new FloatField("打字速度") { value = line.typewriterSpeed };
-            typewriterSpeed.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.typewriterSpeed = Mathf.Max(0f, evt.newValue)));
-            var autoWait = new FloatField("等待") { value = line.autoWaitTime };
-            autoWait.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.autoWaitTime = Mathf.Max(0f, evt.newValue)));
-            audioRow.Add(voiceKey);
-            audioRow.Add(typewriterSpeed);
-            audioRow.Add(autoWait);
-            lineRoot.Add(audioRow);
+            AddDialogueField(lineRoot, "Voice Key", voiceKey);
 
-            var waitForClick = new Toggle("等待点击") { value = line.waitForClick };
+            var typewriterSpeed = new FloatField { value = line.typewriterSpeed };
+            typewriterSpeed.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.typewriterSpeed = Mathf.Max(0f, evt.newValue)));
+            AddDialogueField(lineRoot, "Type Speed", typewriterSpeed);
+
+            var autoWait = new FloatField { value = line.autoWaitTime };
+            autoWait.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.autoWaitTime = Mathf.Max(0f, evt.newValue)));
+            AddDialogueField(lineRoot, "Auto Wait", autoWait);
+
+            var waitForClick = new Toggle { value = line.waitForClick };
             waitForClick.RegisterValueChangedCallback(evt => ModifyDialogueLine(dialogue, line, target => target.waitForClick = evt.newValue));
-            lineRoot.Add(waitForClick);
+            AddDialogueField(lineRoot, "Wait Click", waitForClick);
 
             parent.Add(lineRoot);
         }
 
+        private static void AddDialogueField(VisualElement parent, string labelText, VisualElement field)
+        {
+            var row = new VisualElement();
+            row.AddToClassList("dialogue-field-row");
+
+            var label = new Label(labelText);
+            label.AddToClassList("dialogue-field-label");
+
+            field.AddToClassList("dialogue-field-input");
+
+            row.Add(label);
+            row.Add(field);
+            parent.Add(row);
+        }
+
         private void AddDialogueUiSettings(VisualElement parent)
         {
-            parent.Add(CreateTitle("对话界面"));
+            parent.Add(CreateTitle("Dialogue UI"));
 
             if (selectedScene == null)
             {
-                parent.Add(new HelpBox("请先选择场景配置，再设置对话界面。", HelpBoxMessageType.Info));
+                parent.Add(new HelpBox("Select a scene config before editing dialogue UI settings.", HelpBoxMessageType.Info));
                 return;
             }
 
             var root = new VisualElement();
             root.AddToClassList("dialogue-editor");
 
-            var interfacePrefab = new ObjectField("对话界面 Prefab")
+            var interfacePrefab = new ObjectField("UI Prefab")
             {
                 objectType = typeof(GameObject),
                 allowSceneObjects = false,
@@ -413,7 +432,7 @@ namespace Merge2.SceneEditor.Editor
             });
             root.Add(interfacePrefab);
 
-            var itemPrefab = new ObjectField("默认 Item Prefab")
+            var itemPrefab = new ObjectField("Default Item")
             {
                 objectType = typeof(GameObject),
                 allowSceneObjects = false,
@@ -428,7 +447,7 @@ namespace Merge2.SceneEditor.Editor
             root.Add(itemPrefab);
 
             var styleRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            var defaultAvatarFrame = new ObjectField("默认头像框")
+            var defaultAvatarFrame = new ObjectField("Default Avatar Frame")
             {
                 objectType = typeof(Sprite),
                 allowSceneObjects = false,
@@ -440,7 +459,7 @@ namespace Merge2.SceneEditor.Editor
                 selectedScene.DefaultAvatarFrame = evt.newValue as Sprite;
                 EditorUtility.SetDirty(selectedScene);
             });
-            var defaultDialogueBackground = new ObjectField("默认背景框")
+            var defaultDialogueBackground = new ObjectField("Default Bubble BG")
             {
                 objectType = typeof(Sprite),
                 allowSceneObjects = false,
@@ -457,8 +476,8 @@ namespace Merge2.SceneEditor.Editor
             root.Add(styleRow);
 
             var buttonRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            buttonRow.Add(new Button(CreateDialoguePrefabsFromCurrentScene) { text = "从当前 StoryTalkPanel 创建模板" });
-            buttonRow.Add(new Button(() => EditorStagePlaybackService.PreviewDialogueList(selectedScene, selectedStage)) { text = "预览对话列表" });
+            buttonRow.Add(new Button(CreateDialoguePrefabsFromCurrentScene) { text = "Create From StoryTalkPanel" });
+            buttonRow.Add(new Button(() => EditorStagePlaybackService.PreviewDialogueList(selectedScene, selectedStage)) { text = "Preview Dialogue List" });
             root.Add(buttonRow);
 
             parent.Add(root);
@@ -466,7 +485,7 @@ namespace Merge2.SceneEditor.Editor
 
         private void AddTimelineTools(VisualElement parent, MergeStageConfig stage)
         {
-            parent.Add(CreateTitle("Timeline 工具"));
+            parent.Add(CreateTitle("Timeline"));
 
             var row = new VisualElement { style = { flexDirection = FlexDirection.Row } };
             row.Add(new Button(() =>
@@ -475,51 +494,51 @@ namespace Merge2.SceneEditor.Editor
                 RefreshInspector();
             })
             {
-                text = "补齐 Timeline"
+                text = "Ensure Timelines"
             });
-            row.Add(new Button(() => TimelineAssetService.OpenTimeline(stage, false)) { text = "打开修复 Timeline" });
-            row.Add(new Button(() => TimelineAssetService.OpenTimeline(stage, true)) { text = "打开镜头 Timeline" });
+            row.Add(new Button(() => TimelineAssetService.OpenTimeline(stage, false)) { text = "Open Repair Timeline" });
+            row.Add(new Button(() => TimelineAssetService.OpenTimeline(stage, true)) { text = "Open Camera Timeline" });
             parent.Add(row);
 
             var rebuildRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
             rebuildRow.Add(new Button(() =>
             {
-                if (EditorUtility.DisplayDialog("重建修复 Timeline", "会创建新的修复 Timeline 并替换当前引用，旧资源不会删除。", "重建", "取消"))
+                if (EditorUtility.DisplayDialog("Rebuild Repair Timeline", "Creates a new repair Timeline and replaces the current reference. Existing assets are not deleted.", "Rebuild", "Cancel"))
                 {
                     TimelineAssetService.RecreateRepairTimeline(selectedScene, stage);
                     RefreshInspector();
                 }
             })
             {
-                text = "重建修复 Timeline"
+                text = "Rebuild Repair Timeline"
             });
             rebuildRow.Add(new Button(() =>
             {
-                if (EditorUtility.DisplayDialog("重建镜头 Timeline", "会创建新的镜头 Timeline 并替换当前引用，旧资源不会删除。", "重建", "取消"))
+                if (EditorUtility.DisplayDialog("Rebuild Camera Timeline", "Creates a new camera Timeline and replaces the current reference. Existing assets are not deleted.", "Rebuild", "Cancel"))
                 {
                     TimelineAssetService.RecreateCameraTimeline(selectedScene, stage);
                     RefreshInspector();
                 }
             })
             {
-                text = "重建镜头 Timeline"
+                text = "Rebuild Camera Timeline"
             });
             parent.Add(rebuildRow);
         }
 
         private void AddAcceptanceTools(VisualElement parent, MergeStageConfig stage)
         {
-            parent.Add(CreateTitle("验收"));
+            parent.Add(CreateTitle("Acceptance"));
 
             var stateRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            stateRow.Add(new Button(() => SetValidationState(StageValidationState.Pending)) { text = "待修改" });
-            stateRow.Add(new Button(() => SetValidationState(StageValidationState.Approved)) { text = "已通过" });
-            stateRow.Add(new Button(() => SetValidationState(StageValidationState.Locked)) { text = "锁定" });
+            stateRow.Add(new Button(() => SetValidationState(StageValidationState.Pending)) { text = "Pending" });
+            stateRow.Add(new Button(() => SetValidationState(StageValidationState.Approved)) { text = "Approved" });
+            stateRow.Add(new Button(() => SetValidationState(StageValidationState.Locked)) { text = "Locked" });
             parent.Add(stateRow);
 
             var screenshotRow = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-            screenshotRow.Add(new Button(CaptureAcceptanceScreenshot) { text = "截取验收图" });
-            screenshotRow.Add(new Button(OpenAcceptanceScreenshot) { text = "打开验收图" });
+            screenshotRow.Add(new Button(CaptureAcceptanceScreenshot) { text = "Capture Screenshot" });
+            screenshotRow.Add(new Button(OpenAcceptanceScreenshot) { text = "Open Screenshot" });
             parent.Add(screenshotRow);
 
             if (!string.IsNullOrWhiteSpace(stage.AcceptanceScreenshotPath))
@@ -534,7 +553,7 @@ namespace Merge2.SceneEditor.Editor
 
             if (validationResults.Count == 0)
             {
-                validationPanel?.Add(new Label("尚未执行检查。"));
+                validationPanel?.Add(new Label("Validation has not run yet."));
                 return;
             }
 
@@ -560,7 +579,7 @@ namespace Merge2.SceneEditor.Editor
 
         private void CreateNewScene()
         {
-            var scene = MergeSceneAssetService.CreateSceneConfig("SC_NewScene", "新场景");
+            var scene = MergeSceneAssetService.CreateSceneConfig("SC_NewScene", "New Scene");
             selectedScene = scene;
             selectedStage = null;
             sceneObjectField.SetValueWithoutNotify(selectedScene);
@@ -588,7 +607,7 @@ namespace Merge2.SceneEditor.Editor
                 return;
             }
 
-            if (!EditorUtility.DisplayDialog("删除阶段", $"确定删除 {selectedStage.StageName} 吗？配置资产会保留在项目中。", "删除", "取消"))
+            if (!EditorUtility.DisplayDialog("Delete Stage", $"Delete {selectedStage.StageName}? The config asset will remain in the project.", "Delete", "Cancel"))
             {
                 return;
             }
@@ -687,8 +706,8 @@ namespace Merge2.SceneEditor.Editor
             Undo.RecordObject(dialogue, "Add Dialogue Line");
             dialogue.Lines.Add(new DialogueLine
             {
-                speakerName = "角色",
-                text = "新的对白"
+                speakerName = "Character",
+                text = "New dialogue line"
             });
             EditorUtility.SetDirty(dialogue);
             AssetDatabase.SaveAssets();
@@ -712,6 +731,7 @@ namespace Merge2.SceneEditor.Editor
                 dialogueItemPrefab = source.dialogueItemPrefab,
                 avatarFrame = source.avatarFrame,
                 dialogueBackground = source.dialogueBackground,
+                talkItemContentImage = source.talkItemContentImage,
                 emotion = source.emotion,
                 text = source.text,
                 voiceKey = source.voiceKey,
@@ -782,14 +802,14 @@ namespace Merge2.SceneEditor.Editor
             var panel = GameObject.Find("Canvas/StoryTalkPanel");
             if (panel == null)
             {
-                EditorUtility.DisplayDialog("未找到对话界面", "当前场景没有 Canvas/StoryTalkPanel。", "确定");
+                EditorUtility.DisplayDialog("Dialogue UI Not Found", "The current scene does not contain Canvas/StoryTalkPanel.", "OK");
                 return;
             }
 
             var selfTalk = GameObject.Find("Canvas/StoryTalkPanel/StoryTalkSV/Viewport/Content/SelfTalk");
             if (selfTalk == null)
             {
-                EditorUtility.DisplayDialog("未找到对话 Item", "当前场景没有 Canvas/StoryTalkPanel/StoryTalkSV/Viewport/Content/SelfTalk。", "确定");
+                EditorUtility.DisplayDialog("Dialogue Item Not Found", "The current scene does not contain Canvas/StoryTalkPanel/StoryTalkSV/Viewport/Content/SelfTalk.", "OK");
                 return;
             }
 
@@ -837,11 +857,11 @@ namespace Merge2.SceneEditor.Editor
 
             if (AcceptanceService.CaptureSceneViewScreenshot(selectedScene, selectedStage, out var path))
             {
-                EditorUtility.DisplayDialog("验收截图", $"已保存：{path}", "确定");
+                EditorUtility.DisplayDialog("Acceptance Screenshot", $"Saved: {path}", "OK");
             }
             else
             {
-                EditorUtility.DisplayDialog("验收截图失败", "没有可用的 Scene View 摄像机。请先打开 Scene 视图。", "确定");
+                EditorUtility.DisplayDialog("Screenshot Failed", "No Scene View camera is available. Open the Scene view first.", "OK");
             }
 
             RefreshInspector();

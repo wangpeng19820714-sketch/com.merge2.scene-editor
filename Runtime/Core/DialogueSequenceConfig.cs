@@ -27,6 +27,7 @@ namespace Merge2.SceneEditor.Runtime
         public GameObject dialogueItemPrefab;
         public Sprite avatarFrame;
         public Sprite dialogueBackground;
+        public Sprite talkItemContentImage;
         public string emotion;
         [TextArea]
         public string text;

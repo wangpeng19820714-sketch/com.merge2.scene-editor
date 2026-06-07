@@ -58,7 +58,7 @@ namespace Merge2.SceneEditor.Runtime
 
             if (speakerText != null)
             {
-                speakerText.text = string.IsNullOrWhiteSpace(line.speakerName) ? "角色" : line.speakerName;
+                speakerText.text = string.IsNullOrWhiteSpace(line.speakerName) ? "Character" : line.speakerName;
             }
 
             if (lineText != null)
@@ -82,7 +82,7 @@ namespace Merge2.SceneEditor.Runtime
             AddOverlayBlock(dialogueOverlay.transform, "Name Plate", new Color32(238, 184, 76, 255), new Vector3(-1.05f, 0.36f, -0.01f), new Vector3(0.78f, 0.2f, 1f));
             speakerText = AddOverlayText(dialogueOverlay.transform, "Speaker", string.Empty, new Vector3(-1.05f, 0.36f, -0.03f), 0.046f, Color.black);
             lineText = AddOverlayText(dialogueOverlay.transform, "Line", string.Empty, new Vector3(0f, -0.06f, -0.03f), 0.044f, Color.white);
-            AddOverlayText(dialogueOverlay.transform, "Next Hint", "点击任意位置继续", new Vector3(0.98f, -0.34f, -0.03f), 0.026f, new Color32(190, 198, 205, 255));
+            AddOverlayText(dialogueOverlay.transform, "Next Hint", "Tap anywhere", new Vector3(0.98f, -0.34f, -0.03f), 0.026f, new Color32(190, 198, 205, 255));
         }
 
         private void HideOverlay()
