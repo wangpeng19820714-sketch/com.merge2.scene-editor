@@ -1,0 +1,21 @@
+{
+  "name": "Merge2.SceneEditor.Editor",
+  "rootNamespace": "Merge2.SceneEditor.Editor",
+  "references": [
+    "Merge2.SceneEditor.Runtime",
+    "Unity.Timeline",
+    "Unity.InputSystem",
+    "Unity.ugui"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

@@ -1,0 +1,22 @@
+{
+  "name": "com.merge2.scene-editor",
+  "version": "0.1.0",
+  "displayName": "Merge-2 Scene Editor",
+  "description": "Unity editor tooling and runtime preview support for Merge-2 repair story scenes.",
+  "unity": "6000.0",
+  "keywords": [
+    "merge2",
+    "scene",
+    "editor",
+    "timeline",
+    "dialogue"
+  ],
+  "author": {
+    "name": "Merge2 Tools"
+  },
+  "dependencies": {
+    "com.unity.inputsystem": "1.19.0",
+    "com.unity.ugui": "2.0.0",
+    "com.unity.timeline": "1.8.12"
+  }
+}

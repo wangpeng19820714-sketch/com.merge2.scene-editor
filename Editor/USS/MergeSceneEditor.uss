@@ -1,0 +1,86 @@
+.merge-scene-editor-root {
+    flex-grow: 1;
+    background-color: #202124;
+}
+
+.main-layout {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.left-panel {
+    width: 300px;
+    min-width: 260px;
+    border-right-width: 1px;
+    border-right-color: #3a3d42;
+    padding: 8px;
+}
+
+.center-panel {
+    flex-grow: 1;
+    padding: 8px;
+}
+
+.right-panel {
+    width: 420px;
+    min-width: 360px;
+    border-left-width: 1px;
+    border-left-color: #3a3d42;
+    padding: 8px;
+}
+
+.panel-title {
+    -unity-font-style: bold;
+    font-size: 13px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    color: #d7d9dd;
+}
+
+.list-button {
+    height: 28px;
+    margin-bottom: 3px;
+    -unity-text-align: middle-left;
+}
+
+.selected-list-button {
+    background-color: #355a86;
+}
+
+.validation-error {
+    color: #ff7777;
+    white-space: normal;
+}
+
+.validation-warning {
+    color: #ffd36a;
+    white-space: normal;
+}
+
+.validation-pass {
+    color: #76d672;
+    white-space: normal;
+}
+
+.dialogue-editor {
+    margin-top: 6px;
+}
+
+.dialogue-line {
+    margin-top: 8px;
+    padding: 8px;
+    border-width: 1px;
+    border-color: #3a3d42;
+    border-radius: 4px;
+    background-color: #26282d;
+}
+
+.dialogue-line-index {
+    width: 32px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.dialogue-text-field {
+    min-height: 64px;
+}
