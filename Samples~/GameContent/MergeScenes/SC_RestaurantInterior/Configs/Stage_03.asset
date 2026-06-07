@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec6daeeedce544bdac8e33ae1d62475, type: 3}
+  m_Name: Stage_03
+  m_EditorClassIdentifier: Merge2.SceneEditor.Runtime::Merge2.SceneEditor.Runtime.MergeStageConfig
+  stageId: Stage_03_RepairSignboard
+  stageName: "\u9636\u6BB5 03\uFF1A\u4FEE\u590D\u62DB\u724C"
+  stageDescription: "\u7531\u590D\u5236\u9636\u6BB5\u751F\u6210\uFF0C\u518D\u66FF\u6362\u8D44\u6E90\u548C\u5BF9\u767D\uFF0C\u6F14\u793A\u590D\u5236\u9636\u6BB5\u5DE5\u4F5C\u6D41\u3002"
+  stageIcon: {fileID: 0}
+  beforePrefab: {fileID: 2062136895610180057, guid: c6a836078a860455ebebaec1788fb54d, type: 3}
+  afterPrefab: {fileID: 7457192401415348996, guid: 9c0955b0483d34e7fbac5226386256b1, type: 3}
+  repairTimeline: {fileID: 11400000, guid: 922a072b4762248b4b684553006e539b, type: 2}
+  cameraTimeline: {fileID: 11400000, guid: 251166d3485294faf9c586f7498ece30, type: 2}
+  dialogueSequence: {fileID: 11400000, guid: 4e85f44b4d9584d1084ccc67d202e15f, type: 2}
+  canSkip: 0
+  playDialogue: 1
+  playCameraTimeline: 1
+  defaultPreviewState: 0
+  validationState: 4
+  acceptanceDescription: "Demo \u9A8C\u6536\uFF1A\u590D\u5236\u9636\u6BB5\u540E\u5DF2\u9501\u5B9A\uFF0C\u7528\u4E8E\u6F14\u793A\u9501\u5B9A\u4FDD\u62A4\u3002"
+  acceptanceScreenshotPath: Assets/GameContent/MergeScenes/SC_RestaurantInterior/Validation/Stage_03_RepairSignboard.png
+  locked: 1
+  lastModifiedBy: pengwang
+  lastModifiedAt: 2026-06-07 17:31:15

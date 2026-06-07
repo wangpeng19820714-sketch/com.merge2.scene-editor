@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec6daeeedce544bdac8e33ae1d62475, type: 3}
+  m_Name: Stage_05
+  m_EditorClassIdentifier: Merge2.SceneEditor.Runtime::Merge2.SceneEditor.Runtime.MergeStageConfig
+  stageId: Stage_05
+  stageName: "\u9636\u6BB5 05"
+  stageDescription: 
+  stageIcon: {fileID: 0}
+  beforePrefab: {fileID: 0}
+  afterPrefab: {fileID: 0}
+  repairTimeline: {fileID: 0}
+  cameraTimeline: {fileID: 0}
+  dialogueSequence: {fileID: 11400000, guid: d438b153c55bc45c3a4e05ab3eb4f66b, type: 2}
+  canSkip: 0
+  playDialogue: 1
+  playCameraTimeline: 1
+  defaultPreviewState: 0
+  validationState: 0
+  acceptanceDescription: 
+  acceptanceScreenshotPath: 
+  locked: 0
+  lastModifiedBy: pengwang
+  lastModifiedAt: 2026-06-07 11:24:05

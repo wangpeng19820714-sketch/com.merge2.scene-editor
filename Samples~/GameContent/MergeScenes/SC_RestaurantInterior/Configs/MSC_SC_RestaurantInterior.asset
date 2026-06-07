@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9823e92a9bf2044c7882a1bdbe02edd3, type: 3}
+  m_Name: MSC_SC_RestaurantInterior
+  m_EditorClassIdentifier: Merge2.SceneEditor.Runtime::Merge2.SceneEditor.Runtime.MergeSceneConfig
+  sceneId: SC_RestaurantInterior
+  sceneName: "\u9910\u8F66\u5185\u90E8"
+  description: "Merge-2 \u9910\u8F66\u5185\u90E8\u4FEE\u590D\u5267\u60C5 Demo\uFF1A\u7089\u7076\u3001\u6C34\u69FD\u3001\u62DB\u724C\u4E09\u4E2A\u9636\u6BB5\u3002"
+  sceneRootPrefab: {fileID: 0}
+  dialogueInterfacePrefab: {fileID: 1397482801562153167, guid: c3f713a9dff0a46a591d7296862a5c45, type: 3}
+  defaultDialogueItemPrefab: {fileID: 4633537664079081296, guid: a62a40597948c474f81881d54ac50912, type: 3}
+  defaultAvatarFrame: {fileID: 21300000, guid: eebc08cc86c2e4afba41deca6852e26a, type: 3}
+  defaultDialogueBackground: {fileID: 21300000, guid: 01b0763de1c054fc6a1bd098e588bfb1, type: 3}
+  stages:
+  - {fileID: 11400000, guid: 62b42941de1b34ee7aa9314e71cce6fe, type: 2}
+  - {fileID: 11400000, guid: baa79fa1878814f1f89528f85507c5f5, type: 2}
+  - {fileID: 11400000, guid: b7f30779d877443af90dc4c9420bf5cc, type: 2}

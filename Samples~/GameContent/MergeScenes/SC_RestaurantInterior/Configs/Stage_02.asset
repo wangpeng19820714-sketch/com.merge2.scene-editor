@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec6daeeedce544bdac8e33ae1d62475, type: 3}
+  m_Name: Stage_02
+  m_EditorClassIdentifier: Merge2.SceneEditor.Runtime::Merge2.SceneEditor.Runtime.MergeStageConfig
+  stageId: Stage_02_RepairSink
+  stageName: "\u9636\u6BB5 02\uFF1A\u4FEE\u590D\u6C34\u69FD"
+  stageDescription: "\u6C34\u69FD\u6F0F\u6C34\uFF0C\u9700\u8981\u5207\u6362\u4FEE\u590D\u524D\u540E\u72B6\u6001\u5E76\u9A8C\u6536\u3002"
+  stageIcon: {fileID: 0}
+  beforePrefab: {fileID: 4649470760975762863, guid: 71cdced12d45245ecbcd710dd2e8be52, type: 3}
+  afterPrefab: {fileID: 8470091778707736174, guid: 4edaeff322e6d46d990010866367f68e, type: 3}
+  repairTimeline: {fileID: 11400000, guid: c692e91a82ac94dd5ab1f0af80ed3ba7, type: 2}
+  cameraTimeline: {fileID: 11400000, guid: 3b216ebd7230840479865f811dbc2c70, type: 2}
+  dialogueSequence: {fileID: 11400000, guid: b47268bf062654f4a86ee5b341fa5f43, type: 2}
+  canSkip: 1
+  playDialogue: 1
+  playCameraTimeline: 1
+  defaultPreviewState: 0
+  validationState: 1
+  acceptanceDescription: "Demo \u9A8C\u6536\uFF1A\u5F85\u68C0\u67E5\u6C34\u69FD\u52A8\u753B\u548C\u5BF9\u767D\u8282\u594F\u3002"
+  acceptanceScreenshotPath: Assets/GameContent/MergeScenes/SC_RestaurantInterior/Validation/Stage_02_RepairSink.png
+  locked: 0
+  lastModifiedBy: pengwang
+  lastModifiedAt: 2026-06-07 17:31:15

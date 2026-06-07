@@ -18,5 +18,12 @@
     "com.unity.inputsystem": "1.19.0",
     "com.unity.ugui": "2.0.0",
     "com.unity.timeline": "1.8.12"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Merge Scene Game Content",
+      "description": "Example merge scene content with configs, prefabs, timelines, dialogue, and validation assets.",
+      "path": "Samples~/GameContent/MergeScenes"
+    }
+  ]
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9823e92a9bf2044c7882a1bdbe02edd3, type: 3}
+  m_Name: MSC_SC_NewScene
+  m_EditorClassIdentifier: Merge2.SceneEditor.Runtime::Merge2.SceneEditor.Runtime.MergeSceneConfig
+  sceneId: SC_NewScene
+  sceneName: "\u65B0\u573A\u666F"
+  description: 
+  sceneRootPrefab: {fileID: 0}
+  stages:
+  - {fileID: 11400000, guid: 5f504ea7047c74a0e89a62c5d0b3ce70, type: 2}
+  - {fileID: 11400000, guid: b3139b6eaa24348328a2dffe7b6e6e6f, type: 2}
+  - {fileID: 11400000, guid: e7ddd7291fbd643828fb6c5ee89bdb83, type: 2}
+  - {fileID: 11400000, guid: aaf2c47bcaa124740924040b8da180dd, type: 2}
+  - {fileID: 11400000, guid: 4f9a9a717ac8c4970955928aa8e7e561, type: 2}

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ef6261b567949a0bf20fa6f47dfaf6, type: 3}
+  m_Name: DLG_SC_RestaurantInterior_Stage_01
+  m_EditorClassIdentifier: Merge2.SceneEditor.Runtime::Merge2.SceneEditor.Runtime.DialogueSequenceConfig
+  dialogueId: DLG_SC_RestaurantInterior_Stage_01
+  lines:
+  - speakerId: Amy
+    speakerName: "\u827E\u7C73"
+    portrait: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    dialogueItemPrefab: {fileID: 4633537664079081296, guid: a62a40597948c474f81881d54ac50912, type: 3}
+    avatarFrame: {fileID: 21300000, guid: eebc08cc86c2e4afba41deca6852e26a, type: 3}
+    dialogueBackground: {fileID: 21300000, guid: 01b0763de1c054fc6a1bd098e588bfb1, type: 3}
+    talkItemContentImage: {fileID: 0}
+    emotion: Default
+    text: "\u54CE\u5440\uFF01\u8FD9\u4E2A\u7089\u7076\u770B\u8D77\u6765\u5DF2\u7ECF\u574F\u4E86\u5F88\u4E45\u4E86\u3002"
+    voiceKey: DLG_SC_RestaurantInterior_Stage_01_01
+    typewriterSpeed: 28
+    autoWaitTime: 1.25
+    waitForClick: 1
+  - speakerId: Tom
+    speakerName: "\u6C64\u59C6"
+    portrait: {fileID: 0}
+    dialogueItemPrefab: {fileID: 4633537664079081296, guid: 586d848b0c43a48f99963f76797caf25, type: 3}
+    avatarFrame: {fileID: 21300000, guid: eebc08cc86c2e4afba41deca6852e26a, type: 3}
+    dialogueBackground: {fileID: 21300000, guid: 01b0763de1c054fc6a1bd098e588bfb1, type: 3}
+    talkItemContentImage: {fileID: 0}
+    emotion: Default
+    text: "\u522B\u62C5\u5FC3\uFF0C\u6211\u4EEC\u5148\u628A\u7089\u7076\u4FEE\u597D\uFF0C\u9910\u8F66\u5C31\u80FD\u91CD\u65B0\u5F00\u706B\u3002"
+    voiceKey: DLG_SC_RestaurantInterior_Stage_01_02
+    typewriterSpeed: 28
+    autoWaitTime: 1.25
+    waitForClick: 1
+  - speakerId: Amy
+    speakerName: "\u827E\u7C73"
+    portrait: {fileID: 0}
+    dialogueItemPrefab: {fileID: 4633537664079081296, guid: a62a40597948c474f81881d54ac50912, type: 3}
+    avatarFrame: {fileID: 21300000, guid: eebc08cc86c2e4afba41deca6852e26a, type: 3}
+    dialogueBackground: {fileID: 21300000, guid: 01b0763de1c054fc6a1bd098e588bfb1, type: 3}
+    talkItemContentImage: {fileID: 0}
+    emotion: Default
+    text: "\u592A\u68D2\u4E86\uFF0C\u4FEE\u597D\u540E\u6211\u4EEC\u5C31\u80FD\u505A\u66F4\u591A\u7F8E\u5473\u7684\u98DF\u7269\u5566\uFF01"
+    voiceKey: DLG_SC_RestaurantInterior_Stage_01_03
+    typewriterSpeed: 28
+    autoWaitTime: 1.25
+    waitForClick: 1
